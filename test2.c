@@ -6,19 +6,13 @@
 #include <stdio.h>
 
 int main() {
-    int MAX_SIZE = 1000; // 定义最大数组大小
-    int arr[MAX_SIZE];
+    int arr[1000];
     int size;
 
     printf("Enter the number of integers (不超过999): ");
     scanf("%d", &size);
 
-    if (size < 1 || size > MAX_SIZE) {
-        printf("Invalid number of integers.\n");
-        return 1;
-    }
-
-    printf("Enter %d integers: ", size);
+    printf("Enter integers: ");
     int i = 0;
     while (i < size) {
         scanf("%d", &arr[i]);
@@ -37,7 +31,7 @@ int main() {
             }
             j = j + 1;
         }
-        i++;
+        i = i + 1;
     }
 
     // 输出排序后的结果
@@ -47,7 +41,6 @@ int main() {
         printf("%d,", arr[i]);
         i = i + 1;
     }
-    printf("\n");
-
+    
     return 0;
 }

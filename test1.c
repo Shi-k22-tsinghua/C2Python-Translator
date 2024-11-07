@@ -9,18 +9,18 @@
 int main() {
     char s[1000]; // 假设输入的字符串长度不超过999
     printf("Enter a string: ");
-    scanf("%999s", s); // 读取字符串，最多读取999个字符
+    scanf("%s", s); // 读取字符串，最多读取999个字符
 
     int left = 0;
     int right = strlen(s) - 1;
     while (left < right) {
         if (s[left] != s[right]) {
-            printf("%s is palindrome: False\n", s);
+            printf("False");
             return 0;
         }
-        left++;
-        right--;
+        left = left + 1;
+        right = right - 1;
     }
-    printf("%s is palindrome: True\n", s);
+    printf("True");
     return 0;
 }
