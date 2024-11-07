@@ -1,8 +1,3 @@
-# =============================================================================
-# 文件名：c_lexer.py
-# 功能：基于python-lex的C-词法分析器
-# 作者： 常为， 荆顺吉
-# 时间：2019/12/29
 #==============================================================================
 # *接口说明*
 #   - getToken() : 获取下一个token
@@ -185,10 +180,17 @@ def t_error(t):
 lexer = lex.lex()
 
 # 测试输入文件与结果输出文件
-f = open('test2.c', 'r', encoding='UTF-8')
+# f = open('test2.c', 'r', encoding='UTF-8')
 f1 = open('output.txt', 'w')   #输出结果
 
-data = f.read() # 获取输入串
+# data = f.read() # 获取输入串
+print("请输入代码文件的路径：")
+try:
+    file_path = input().strip()
+    with open(file_path, 'r') as file:
+        data = file.read()
+except Exception:
+    print("打开文件失败！")
 
 lexer.input(data) # 将输入串输入词法分析器
 
@@ -214,5 +216,5 @@ def getToken():
     return lexer.token()
 
 # 文件流关闭
-f.close()
+# f.close()
 f1.close()
