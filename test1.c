@@ -8,11 +8,17 @@
 
 int main() {
     char s[1000]; // 假设输入的字符串长度不超过999
-    printf("Enter a string: ");
+    printf("Enter a string: (max 999 characters)");
     scanf("%s", s); // 读取字符串，最多读取999个字符
 
-    int left = 0;
-    int right = strlen(s) - 1;
+    int left;
+    int right;
+    int len;
+
+    len = strlen(s);
+    left = 0;
+    right = len - 1;
+
     while (left < right) {
         if (s[left] != s[right]) {
             printf("False");

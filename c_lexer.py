@@ -129,7 +129,7 @@ def t_tab(t):
 
 # 识别头文件
 def t_HEADFILE(t):
-    r'<[a-zA-Z0-9_\.]+\.h>'
+    r'[a-zA-Z0-9_\.]+\.h'
     t.type = reserved.get(t.value, 'HEADFILE')
     return t
 

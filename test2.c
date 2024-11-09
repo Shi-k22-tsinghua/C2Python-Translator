@@ -13,7 +13,8 @@ int main() {
     scanf("%d", &size);
 
     printf("Enter integers: ");
-    int i = 0;
+    int i;
+    i = 0;
     while (i < size) {
         scanf("%d", &arr[i]);
         i = i + 1;
@@ -22,7 +23,8 @@ int main() {
     // 排序
     i = 0;
     while (i < size - 1) {
-        int j = 0;
+        int j;
+        j = 0;
         while (j < size - i - 1) {
             if (arr[j] > arr[j + 1]) {
                 int temp = arr[j];

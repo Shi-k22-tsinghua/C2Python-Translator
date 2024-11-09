@@ -1,0 +1,43 @@
+PROGRAM -> PRE_PROGRAM | MAIN_PROGRAM
+PRE_PROGRAM -> INCLUDE_STMT | INCLUDE_STMT INCLUDE_STMT_REST
+INCLUDE_STMT ->  '#' "include" HEADFILE
+INCLUDE_STMT_REST -> INCLUDE_STMT INCLUDE_STMT_REST | ε
+HEADFILE -> '<' headfile_name '>'
+
+MAIN_PROGRAM -> "int" "main" "(" ")" "{" BODY "}"
+BODY -> STATEMENT_BODY 'return' '0'
+STATEMENT_BODY -> STATEMENT STATEMENT_BODY | ε
+STATEMENT -> INPUT_STMT | PRINT_STMT | DECLARATION_STMT | ASSIGNMENT_STMT | IF_STMT | WHILE_STMT | RETURN_STMT
+INPUT_STMT -> "scanf" "(" string_literal "," "&" identifier ")" ";" | "scanf" "(" string_literal "," "&" arrayItem ")" ";"
+PRINT_STMT -> "printf" "(" string_literal ")" ";"
+DECLARATION_STMT -> INT_DECLARATION | ARRAT_DECLARATION
+INT_DECLARATION -> "int" identifier ";"
+ARRAT_DECLARATION -> "int" identifier "[" number "]" ";" | "char" identifier "[" number "]" ";"
+ASSIGNMENT_STMT -> identifier "=" EXPRESSION ";" | arrayItem "=" EXPRESSION ";"
+arrayItem -> identifier "[" expression "]"
+IF_STMT -> "if" "(" CONDITION ")" "{" STATEMENT_BODY "}"
+WHILE_STMT -> "while" "(" CONDITION ")" "{" STATEMENT_BODY "}"
+RETURN_STMT -> "return" number ";" | "return" identifier ";"
+CONDITION ->  EXPRESSION '>' EXPRESSION | EXPRESSION '<' EXPRESSION | EXPRESSION '==' EXPRESSION | EXPRESSION '!=' EXPRESSION | EXPRESSION '>=' EXPRESSION | EXPRESSION '<=' EXPRESSION
+
+EXPRESSION -> term | term "+" term | term "-" term
+tTERM -> FACTOR | FACTOR "*" FACTOR | FACTOR "/" FACTOR
+FACTOR -> identifier | number | "(" EXPRESSION ")"
+
+// ----------词法规则
+identifier -> letter identifier_rest
+identifier_rest -> letter identifier_rest | digit identifier_rest | ε
+number -> digit number_rest | "-" digit number_rest
+number_rest -> digit number_rest | ε
+string_literal -> '"' characters '"'
+characters -> character characters | ε
+character -> letter | digit | special_char
+special_char -> " " | "!" | "#" | "$" | "%" | "&" | "'" | "(" | ")" | "*" |
+"+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" | "\"
+| "]" | "^" | "_" | "{" | "|" | "}" | "~"
+letter -> "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" |
+"k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x"
+| "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" |
+"L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y"
+| "Z"
+digit -> "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
