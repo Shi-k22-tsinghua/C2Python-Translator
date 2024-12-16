@@ -1,6 +1,6 @@
 import re
 import ply.yacc as yacc
-from C_lex import tokens, identifier
+from C_lexer import tokens, identifier
 from AST import ASTInternalNode
 from AST import ASTExternalNode
 from ruamel.yaml import YAML
