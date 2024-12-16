@@ -2,6 +2,20 @@ import os
 import re
 
 
+def formatIndent(item, rank=-1):
+    INDENT_STRING = '    '
+    if type(item) == str:
+        # 对于只声明不定义的变量需要补上=None
+        if '(' not in item and ' ' not in item and '=' not in item and item != '' and item != 'break' \
+                and item != 'continue' and item != 'pass' and item != 'else:' and item != 'if' and item != 'return':
+            item += ' = None'
+        return INDENT_STRING * rank + item
+    if type(item) == list:
+        lines = []
+        for i in item:
+            lines.append(formatIndent(i, rank + 1))
+        return '\n'.join(lines)
+
 def precompile(filename):
     """ 预处理文件 """
     """ 返回:(bool-是否成功, string-成功返回处理后源代码，失败返回错误信息) """
